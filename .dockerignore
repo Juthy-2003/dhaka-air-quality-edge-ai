@@ -1,0 +1,12 @@
+.venv
+data
+state
+models/published
+**/__pycache__
+.pytest_cache
+.ruff_cache
+devlog
+docs
+tests
+bench
+*.md

@@ -1,0 +1,11 @@
+# Local Python environment and caches (rebuilt by `uv sync`)
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+# The LLM is 1 GB, over GitHub's 100 MB file limit; `make llm-model` downloads it
+data/llm/*.gguf
+# Runtime state: the gateway's model, outbox and stats; published model versions
+state/
+models/published/

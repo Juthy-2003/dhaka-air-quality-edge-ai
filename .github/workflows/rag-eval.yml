@@ -1,0 +1,26 @@
+name: RAG eval gate
+# Retrieval must not get worse: recall@5 and MRR within 0.05 of the committed
+# baseline (src/aqedge/rag/evals/baseline.json). Runs when retrieval changes.
+on:
+  pull_request:
+    paths: ["src/aqedge/rag/**", "pyproject.toml"]
+  workflow_dispatch:
+
+jobs:
+  retrieval:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg17
+        env: { POSTGRES_USER: aq, POSTGRES_PASSWORD: aq, POSTGRES_DB: aq }
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U aq" --health-interval 5s --health-retries 20
+    env:
+      DATABASE_URL: postgresql://aq:aq@localhost:5432/aq
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with: { enable-cache: true }
+      - run: uv sync --frozen --no-default-groups
+      - run: uv run python -m aqedge.rag.ingest
+      - run: uv run python -m aqedge.rag.evaluate --gate

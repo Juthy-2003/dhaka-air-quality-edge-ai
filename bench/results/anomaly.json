@@ -1,0 +1,26 @@
+{
+  "results": {
+    "rules": {
+      "precision": 0.3277,
+      "recall": 0.9018,
+      "f1": 0.4807,
+      "false_alarm_episodes": 478,
+      "recall_stuck": 1.0,
+      "recall_spike": 0.9828,
+      "recall_drift": 0.6111,
+      "recall_dropout": 1.0
+    },
+    "iforest": {
+      "precision": 0.8953,
+      "recall": 0.75,
+      "f1": 0.8162,
+      "false_alarm_episodes": 20,
+      "recall_stuck": 0.9322,
+      "recall_spike": 0.9483,
+      "recall_drift": 0.0926,
+      "recall_dropout": 1.0,
+      "threshold": 0.1579476462400565,
+      "bytes": 1737532
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "kind": "iforest",
+  "file": "iforest.onnx",
+  "features": [
+    "z",
+    "rel_delta",
+    "log_ratio",
+    "flat_len",
+    "short_std",
+    "peer_dev",
+    "peer_dev_6"
+  ],
+  "window": 48,
+  "threshold": 0.1579476462400565,
+  "sha256": "112e68cb627007193ef471a5fe9bd3401f6f4f05816b42d003320f16ece88c3d",
+  "version": "local"
+}

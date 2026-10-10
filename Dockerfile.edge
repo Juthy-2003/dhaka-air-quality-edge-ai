@@ -1,0 +1,14 @@
+# Edge gateway image: the agent (MQTT → ONNX → store-and-forward) and the OTA
+# updater. Deliberately small: onnxruntime + numpy + paho-mqtt + requests,
+# no scikit-learn, pandas or web framework.
+FROM python:3.12-slim
+RUN pip install --no-cache-dir "onnxruntime==1.31.*" "numpy==2.*" "paho-mqtt==2.1.*" "requests==2.*" "prometheus-client==0.*" \
+    && useradd --uid 1000 --create-home edge
+WORKDIR /app
+COPY src/aqedge/__init__.py src/aqedge/
+COPY src/aqedge/edge src/aqedge/edge
+COPY models/current models/current
+ENV PYTHONPATH=/app/src PYTHONUNBUFFERED=1 MODEL_DIR=/app/state/model BUNDLED_MODEL_DIR=/app/models/current
+RUN mkdir -p /app/state && chown -R edge /app
+USER edge
+CMD ["python", "-m", "aqedge.edge.agent"]

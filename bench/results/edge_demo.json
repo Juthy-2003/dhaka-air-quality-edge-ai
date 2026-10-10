@@ -1,0 +1,39 @@
+{
+  "measured_at": "2026-10-10",
+  "setup": "docker compose on an Apple M4 laptop: Mosquitto 2.0, edge agent container (--cpus 0.5, 256 MB, ONNX isolation forest), simulator replaying 2,000 hours x 8 SYNTHETIC sensors (4 Dhaka locations x PM2.5/PM10, modelled Mendeley values, 6 injected faults per sensor) at 100 messages/s, FastAPI app + Postgres. Method: scripts/edge_demo.sh then scripts/edge_report.py.",
+  "events": [
+    "v1 published to models/manifest.json before the stream; gateway swapped local -> v1",
+    "app (uplink) stopped for 20 s, starting 40 s into the stream",
+    "v2 published 3 s after the uplink returned; gateway swapped v1 -> v2 while the stream was still running (v2 = the same weights re-published: the demo exercises the delivery path, not a better model)"
+  ],
+  "readings_received": 16000,
+  "events_forwarded": 209,
+  "bandwidth_saved": 0.9722,
+  "bytes_all_vs_sent": [
+    3009562,
+    83589
+  ],
+  "recall": 0.7174,
+  "precision": 1.0,
+  "recall_by_kind": {
+    "stuck": "13/16",
+    "spike": "12/14",
+    "drift": "0/8",
+    "dropout": "8/8"
+  },
+  "events_by_model_version": {
+    "1": 85,
+    "2": 68,
+    "rule:dropout": 56
+  },
+  "max_queued_for_s": 31.56,
+  "events_that_waited_in_outbox": 32,
+  "outbox_left": 0,
+  "model_running_at_end": "2",
+  "anomalies_detected_by_agent": 209,
+  "lost_events": 0,
+  "agent_latency_ms_p50_p95": [
+    2.78,
+    38.38
+  ]
+}

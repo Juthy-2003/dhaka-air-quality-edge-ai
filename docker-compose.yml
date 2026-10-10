@@ -1,0 +1,66 @@
+# The whole system on one machine: six containers.
+#   docker compose -p aq up -d --build      # postgres, app :8000, llm, mosquitto, agent
+#   docker compose -p aq run --rm simulator # SYNTHETIC sensors with injected faults (profile "sim")
+# `make up`, `make demo`, `make bench` wrap these.
+
+services:
+  postgres:            # readings, anomalies and the RAG corpus (pgvector) in one database
+    image: pgvector/pgvector:pg17
+    environment: { POSTGRES_USER: aq, POSTGRES_PASSWORD: aq, POSTGRES_DB: aq }
+    ports: ["5435:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD", "pg_isready", "-U", "aq"], interval: 5s, retries: 20 }
+
+  app:                 # FastAPI: readings API, anomalies, /ask, models/manifest.json; replays data as live
+    build: .
+    image: aq-app:local
+    environment:
+      DATABASE_URL: postgresql://aq:aq@postgres:5432/aq
+      LLM_URL: http://llm:8080
+      GATEWAY_KEY: local-demo-key
+    ports: ["8000:8000"]
+    volumes:
+      - ./data:/data:ro                                 # the replay dataset
+      - ./models/published:/app/models/published:ro     # written by scripts/publish_model.py
+    depends_on: { postgres: { condition: service_healthy } }
+
+  llm:                 # Qwen2.5-1.5B-Instruct GGUF Q4_K_M (Apache-2.0), downloaded by `make llm-model`
+    image: ghcr.io/ggml-org/llama.cpp:server
+    command: ["-m", "/models/qwen2.5-1.5b-instruct-q4_k_m.gguf", "--host", "0.0.0.0", "--port", "8080",
+              "-c", "4096", "-t", "2", "--parallel", "1", "--metrics"]
+    cpus: 2
+    mem_limit: 2g
+    volumes: [./data/llm:/models:ro]
+    ports: ["8081:8080"]
+
+  mosquitto:           # MQTT broker on the gateway's private network
+    image: eclipse-mosquitto:2.0
+    volumes: [./deploy/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro]
+
+  agent:               # the edge gateway, capped like a small device
+    build: { context: ., dockerfile: Dockerfile.edge }
+    image: aq-edge:local
+    cpus: 0.5
+    mem_limit: 256m
+    environment:
+      MQTT_HOST: mosquitto
+      API_URL: http://app:8000
+      GATEWAY_ID: gw-dhaka-01
+      GATEWAY_KEY: local-demo-key
+      MODEL_MANIFEST_URL: http://app:8000/models/manifest.json
+      OTA_POLL_SECONDS: "10"
+      OUTBOX: /app/state/outbox.sqlite
+      STATS_FILE: /app/state/stats.json
+    volumes: [./state:/app/state]
+    depends_on: [mosquitto]
+
+  simulator:           # one-shot: SYNTHETIC sensors (replayed values + injected faults) over MQTT
+    profiles: [sim]
+    image: aq-app:local
+    environment: { MQTT_HOST: mosquitto }
+    command: ["python", "-m", "aqedge.edge.simulator", "--hours", "2000", "--rate", "100", "--labels", "/state/labels.json"]
+    volumes: [./data:/data:ro, ./state:/state]
+    depends_on: [mosquitto]
+
+volumes:
+  pgdata:

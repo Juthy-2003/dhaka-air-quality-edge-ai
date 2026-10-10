@@ -1,0 +1,60 @@
+[project]
+name = "aqedge"
+version = "0.2.0"
+description = "Dhaka Air Quality — Edge AI + RAG assistant"
+authors = [
+    { name = "Juthy", email = "20213654508juthy@juniv.edu" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.143.0",
+    "fastembed>=0.9.0",
+    "onnxruntime>=1.31.0",
+    "paho-mqtt>=2.1.0",
+    "pandas>=3.0.6",
+    "pgvector>=0.5.1",
+    "prometheus-client>=0.26.0",
+    "psycopg[binary]>=3.3.6",
+    "pyarrow>=25.0.1",
+    "pypdf>=6.20.0",
+    "requests>=2.34.2",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.29,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+# Training only: the app image and the gateway image do not carry scikit-learn.
+train = [
+    "scikit-learn>=1.9.1",
+    "skl2onnx>=1.20.0",
+]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.1.1",
+    "ruff>=0.17.0",
+]
+
+[tool.uv]
+default-groups = ["dev", "train"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::UserWarning", "ignore::FutureWarning"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+include = ["*.py"]
+extend-exclude = ["data", "models", "state"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+ignore = ["S101", "S311", "S608", "B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "B", "E501"]
+"scripts/*" = ["S", "E501"]
+"bench/*" = ["S", "E501"]

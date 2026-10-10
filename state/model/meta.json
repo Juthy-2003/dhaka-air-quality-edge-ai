@@ -1,0 +1,6 @@
+{
+  "file": "model.onnx",
+  "threshold": 0.1579476462400565,
+  "version": "2",
+  "sha256": "112e68cb627007193ef471a5fe9bd3401f6f4f05816b42d003320f16ece88c3d"
+}

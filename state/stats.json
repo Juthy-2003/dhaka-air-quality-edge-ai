@@ -1,0 +1,1 @@
+{"readings": 16000, "anomalies": 209, "bytes_all": 3009562, "bytes_sent": 83589, "queue": 0, "model": "2", "latency_ms_p50": 2.78, "latency_ms_p95": 38.38, "received_per_s": 100.0, "score_ms_mean": 2.508}

@@ -1,0 +1,32 @@
+{"id": "q001", "question": "Is it safe to go jogging in Mirpur this evening?", "evidence": ["be active outside", "outdoor activities shorter and less intense", "Avoid long or intense outdoor activities"], "needs_reading": true}
+{"id": "q002", "question": "Who counts as a sensitive group for particle pollution?", "evidence": ["Sensitive groups include people", "heart or lung disease, older adults, children"], "needs_reading": false}
+{"id": "q003", "question": "What should people with asthma do when the AQI is unhealthy for sensitive groups?", "evidence": ["asthma action plan", "quick relief medicine"], "needs_reading": false}
+{"id": "q004", "question": "What PM2.5 concentration counts as Good on the AQI?", "evidence": ["0.0 – 9.0", "0.0 - 9.0"], "needs_reading": false}
+{"id": "q005", "question": "What is the PM2.5 range for the Moderate category?", "evidence": ["9.1 – 35.4", "9.1 - 35.4"], "needs_reading": false}
+{"id": "q006", "question": "What should everyone do when air quality is Very Unhealthy?", "evidence": ["Avoid long or intense activities", "Avoid all physical activity outdoors"], "needs_reading": false}
+{"id": "q007", "question": "What should sensitive groups do when the air quality is Hazardous?", "evidence": ["Remain indoors and keep activity levels", "Avoid all physical activity outdoors"], "needs_reading": false}
+{"id": "q008", "question": "Where do fine particles like PM2.5 come from?", "evidence": ["power plants, industrial processes, vehicle tailpipes", "Fine particles (2.5 micrometers"], "needs_reading": false}
+{"id": "q009", "question": "What health problems does particle pollution cause?", "evidence": ["coughing, wheezing, reduced lung", "asthma attacks, heart attacks and strokes"], "needs_reading": false}
+{"id": "q010", "question": "How can I reduce particle levels inside my home?", "evidence": ["HEPA air filters", "portable air cleaner", "Keep particles lower indoors"], "needs_reading": false}
+{"id": "q011", "question": "Why are children more at risk from air pollution?", "evidence": ["lungs are still developing", "breathe more air per pound"], "needs_reading": false}
+{"id": "q012", "question": "How many premature deaths does outdoor air pollution cause worldwide?", "evidence": ["4.2 million premature deaths"], "needs_reading": false}
+{"id": "q013", "question": "Which diseases account for most deaths from outdoor air pollution?", "evidence": ["ischaemic heart disease and stroke"], "needs_reading": false}
+{"id": "q014", "question": "Which regions carry the greatest burden of outdoor air pollution?", "evidence": ["South-East Asia and Western Pacific", "low- and middle-income countries"], "needs_reading": false}
+{"id": "q015", "question": "What is the WHO interim target one for PM2.5?", "evidence": ["interim target one (35", "interim targets"], "needs_reading": false}
+{"id": "q016", "question": "What policies reduce air pollution from transport?", "evidence": ["rapid urban transit, walking and cycling", "cleaner heavy-duty diesel vehicles"], "needs_reading": false}
+{"id": "q017", "question": "What is carbon monoxide and where does it come from?", "evidence": ["Carbon monoxide is a colourless, odourless", "incomplete combustion"], "needs_reading": false}
+{"id": "q018", "question": "What is ground-level ozone?", "evidence": ["photochemical smog", "Ozone at ground level"], "needs_reading": false}
+{"id": "q019", "question": "Where does nitrogen dioxide come from?", "evidence": ["NO2 is a gas that is commonly released", "combustion of fuels in the transportation"], "needs_reading": false}
+{"id": "q020", "question": "What is sulfur dioxide and how is it produced?", "evidence": ["SO2 is a colourless gas", "burning of fossil fuels (coal and oil)"], "needs_reading": false}
+{"id": "q021", "question": "How many categories does the AQI have and what are their names?", "evidence": ["six categories", "Unhealthy for Sensitive Groups"], "needs_reading": false}
+{"id": "q022", "question": "How is the AQI calculated from a pollutant concentration?", "evidence": ["Calculating the AQI from pollutant concentration", "Breakpoints for the AQI"], "needs_reading": false}
+{"id": "q023", "question": "What is the NowCast?", "evidence": ["NowCast"], "needs_reading": false}
+{"id": "q024", "question": "What do the AQI colors mean?", "evidence": ["color-coded", "AQI Colors", "Names and colors"], "needs_reading": false}
+{"id": "q025", "question": "Should people with heart disease worry about symptoms on high pollution days?", "evidence": ["palpitations, shortness of breath, or unusual fatigue", "People with heart disease"], "needs_reading": false}
+{"id": "q026", "question": "What can I do to help reduce particle pollution?", "evidence": ["Drive less", "Don’t burn leaves, garbage, plastic", "carpool, use public"], "needs_reading": false}
+{"id": "q027", "question": "Is the air in Gulshan unhealthy right now, and what should older adults do?", "evidence": ["older adults", "Sensitive groups"], "needs_reading": true}
+{"id": "q028", "question": "Can my kids play outside in Uttara today?", "evidence": ["Children and teenagers", "be active outside", "Sensitive groups"], "needs_reading": true}
+{"id": "q029", "question": "What are coarse particles and where do they come from?", "evidence": ["Coarse particles (between 2.5", "road dust"], "needs_reading": false}
+{"id": "q030", "question": "What should outdoor workers do when PM2.5 is unhealthy?", "evidence": ["outdoor workers", "take more breaks"], "needs_reading": false}
+{"id": "q031", "question": "Is staying indoors with windows closed always safe during smoke and heat?", "evidence": ["staying inside with the windows closed may be dangerous"], "needs_reading": false}
+{"id": "q032", "question": "What are the main components of particulate matter?", "evidence": ["sulfates, nitrates, ammonia", "black carbon, mineral dust"], "needs_reading": false}

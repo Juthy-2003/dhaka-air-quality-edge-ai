@@ -1,0 +1,12 @@
+{
+  "questions": 32,
+  "k": 5,
+  "recall_at_k": 0.9062,
+  "mrr": 0.7995,
+  "misses": [
+    "q004",
+    "q005",
+    "q011"
+  ],
+  "corpus_version": "d02ece303c13"
+}
